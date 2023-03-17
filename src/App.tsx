@@ -11,21 +11,26 @@ const App: FC = () => {
   const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
     if (event.target.name === 'task') setTask(event.target.value)
     else setDeadline(Number(event.target.value))
-    
   }
 
   const addToList = (): void => {
+
+    let id: number = 0
+    if (todos.length === 0) id = 1
+    else id = todos[todos.length-1].id+1
+
     const newTask = {
       taskName: task,
-      deadline: deadline
+      deadline: deadline,
+      id: id
     }
     setTodos([...todos, newTask])
     setTask("")
     setDeadline(0)
   }
 
-  const completeTask = (taskNameToDelete: string): void => {
-    const filteredTodos: ITask[] = todos.filter(task => task.taskName !== taskNameToDelete)
+  const completeTask = (id: number): void => {
+    const filteredTodos: ITask[] = todos.filter(task => task.id !== id)
     setTodos(filteredTodos)
   }
 

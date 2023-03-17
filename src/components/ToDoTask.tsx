@@ -3,7 +3,7 @@ import { ITask } from '../Interfaces'
 
 interface Props {
   todo: ITask;
-  completeTask(taskNameToDelete: string): void
+  completeTask(id: number): void
 }
 
 const ToDoTask = ({ todo, completeTask }: Props) => {
@@ -14,7 +14,7 @@ const ToDoTask = ({ todo, completeTask }: Props) => {
         <span>{todo.deadline}</span>
       </div>
 
-      <button onClick={() => completeTask(todo.taskName)}>x</button>
+      <button onClick={() => completeTask(todo.id)}>x</button>
     </div>
   )
 }
